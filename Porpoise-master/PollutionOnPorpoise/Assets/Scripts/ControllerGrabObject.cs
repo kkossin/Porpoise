@@ -114,39 +114,61 @@ public class ControllerGrabObject : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //1
-        if (playerScript.guntype == PlayerController.GunType.hand)
-        {
-            Debug.Log("Just a hand...");
-            if (Controller.GetHairTriggerDown())
-            {
-                //Component playerScript = Player.GetComponent<PlayerController>();
 
-                if (collidingObject)
-                {
-                    GrabObject();
+
+        if (Controller.GetHairTriggerDown())
+         {
+             //Component playerScript = Player.GetComponent<PlayerController>();
+
+                    if (collidingObject)
+                    {
+                        GrabObject();
+                     }
+               }
+
+        if (Controller.GetHairTriggerUp())
+              {
+                   if (objectInHand)
+                   {
+                        ReleaseObject();
+                    }
                 }
-            }
+           
+
+            //  //As this script is disabled from player controller there is no need to check for gun type.
+            //  //1
+            //if (playerScript.guntype == PlayerController.GunType.hand)
+            //  {
+            //      //Debug.Log("Just a hand...");
+            //      if (Controller.GetHairTriggerDown())
+            //      {
+            //          //Component playerScript = Player.GetComponent<PlayerController>();
+
+            //          if (collidingObject)
+            //          {
+            //              GrabObject();
+            //          }
+            //      }
 
 
-            // 2
-            if (Controller.GetHairTriggerUp())
-            {
-                if (objectInHand)
-                {
-                    ReleaseObject();
-                }
-            }
-        }
+            //      //2
+            //     if (Controller.GetHairTriggerUp())
+            //      {
+            //          if (objectInHand)
+            //          {
+            //              ReleaseObject();
+            //          }
+            //      }
+            //  }
 
-        else if (playerScript.guntype == PlayerController.GunType.starFish)
-        {
-            if (Controller.GetHairTriggerDown())
-            {
-                Debug.Log("I'm a starfish!");
-            }
-        }
-    }
+            //  //else if (playerScript.guntype == PlayerController.GunType.starFish)
+            //  {
+            //      if (Controller.GetHairTriggerDown())
+            //      {
+            //          Debug.Log("I'm a starfish!");
+            //      }
+    //}
+}
 
   
 }

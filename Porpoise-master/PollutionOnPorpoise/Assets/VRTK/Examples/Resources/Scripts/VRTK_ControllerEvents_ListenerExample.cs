@@ -1,9 +1,11 @@
 ﻿namespace VRTK.Examples
 {
     using UnityEngine;
-
+    
     public class VRTK_ControllerEvents_ListenerExample : MonoBehaviour
     {
+       
+
         private void Start()
         {
             if (GetComponent<VRTK_ControllerEvents>() == null)
