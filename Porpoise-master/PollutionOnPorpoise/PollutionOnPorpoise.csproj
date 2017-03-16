@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Ship.cs" />
     <Compile Include="Assets\Scripts\ViveControllerInputTest.cs" />
     <Compile Include="Assets\Scripts\bulletManager.cs" />
+    <Compile Include="Assets\Scripts\recycleManager.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -394,6 +395,8 @@
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_SDKManager.cs" />
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_SharedMethods.cs" />
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_Simulator.cs" />
+    <Compile Include="Assets\scrip.cs" />
+    <Compile Include="Assets\trashDestroyer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />

@@ -16,7 +16,9 @@ public class LevelManager : MonoBehaviour {
     public float timeToWave4;
     public int numWaves;
     private List<float> timeToWave;
-    private int currentBoatIndex = 0; 
+    private int currentBoatIndex = 0;
+    public GameObject minigameObject;
+
 	// Use this for initialization
 	void Start () {
 
@@ -55,12 +57,14 @@ public class LevelManager : MonoBehaviour {
         }
         if(boatsInLevel == 0)
         {
-            youWin();
+            youWin();//TODO: This executes whenever the first boat is destroyed
         }
 
 	}
     void youWin()
     {
         Debug.Log("Winna!");
+        Instantiate(minigameObject);
+
     }
 }
