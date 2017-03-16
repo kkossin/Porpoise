@@ -35,13 +35,13 @@ public class recycleManager : MonoBehaviour {
     {
         trashCount = UnityEngine.Random.Range(5, 11);
         //total = trashCount;
-        Debug.Log("Trash: " + trashCount);
+      //  Debug.Log("Trash: " + trashCount);
         for (int i=0; i < trashCount;i++)
         {
             Rigidbody clone;
             
             float offset = 0.0f;
-            Debug.Log(UnityEngine.Random.Range(0, 2));
+          //  Debug.Log(UnityEngine.Random.Range(0, 2));
 
             Vector3 pos = new Vector3(0, 1.5f + offset, -1);
             Quaternion rot = UnityEngine.Random.rotationUniform;
@@ -69,6 +69,7 @@ public class recycleManager : MonoBehaviour {
            
             trash.Remove(other.gameObject);
             Destroy(other.gameObject);
+        points++;
         
     }
 
