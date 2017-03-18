@@ -10,9 +10,10 @@ public class Bullet : MonoBehaviour {
 	void Start () {
 		
 	}
+
     public void OnTriggerEnter(Collider other)
     {
-     if(other.CompareTag("Destructable"))
+        if(other.CompareTag("Destructable"))
         {
             Ship target = other.gameObject.GetComponent<Ship>();
             if (target.hitPoints <= damage)
@@ -29,6 +30,6 @@ public class Bullet : MonoBehaviour {
    
     // Update is called once per frame
     void Update () {
-		
+
 	}
 }

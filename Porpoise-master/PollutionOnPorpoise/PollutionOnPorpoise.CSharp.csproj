@@ -81,8 +81,9 @@
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Ship.cs" />
+    <Compile Include="Assets\Scripts\Sludge.cs" />
     <Compile Include="Assets\Scripts\ViveControllerInputTest.cs" />
-    <Compile Include="Assets\Scripts\bulletManager.cs" />
+    <Compile Include="Assets\Scripts\fishBullet.cs" />
     <Compile Include="Assets\Scripts\recycleManager.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bulletManager : MonoBehaviour {
     float lifeTime = 30.0f;
+    int damage = 20;
 
     void Awake()
     {
@@ -17,10 +18,19 @@ public class bulletManager : MonoBehaviour {
     {
         if (other.CompareTag("Destructable"))
         {
-            Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            Ship target = other.gameObject.GetComponent<Ship>();
+            if (target.hitPoints <= damage)
+            {
+                Destroy(other.gameObject);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                target.hitPoints -= damage;
+            }
         }
     }
+
     // Update is called once per frame
     void Update () {
 		

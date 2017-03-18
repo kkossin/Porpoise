@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour {
         boats.Add(boat2);
         boats.Add(boat3);
         boats.Add(boat4);
-        timeToWave = new List<float>() { timeToWave4,timeToWave3, timeToWave2,timeToWave1};
+        timeToWave = new List<float>() { timeToWave4, timeToWave3, timeToWave2, timeToWave1 };
 	}
 	
 	// Update is called once per frame
