@@ -8,6 +8,7 @@ public class Ship : MonoBehaviour {
     float cx = 0.0f; // coords of center of circle (center of screen, in this case)
     float cy = 0.0f;
     public bool moving = false;
+    public int hitPoints = 100;
  
     int radius = 16; // radius of circle
     double angle;
@@ -17,6 +18,7 @@ public class Ship : MonoBehaviour {
 
     void Start () {
         //speedScale = (0.001 * 2 * Math.PI) / speed;
+        angle = UnityEngine.Random.Range(0, 2.0f * (float)Math.PI);
     }
    
     void Update () {
@@ -27,7 +29,7 @@ public class Ship : MonoBehaviour {
             //Debug.Log("speedScale: " + speedScale);
             //Debug.Log("angle cos: " + Math.Cos(angle));
             //Debug.Log("angle sin: " + Math.Sin(angle));
-            transform.position = new Vector3((float)(cx + Math.Sin(angle) * radius), 3, (float)(cy + Math.Cos(angle) * radius));
+            transform.position = new Vector3((float)(cx + Math.Sin(angle) * radius), 1.5f, (float)(cy + Math.Cos(angle) * radius));
             //this._x = cx + Math.Sin(angle) * radius;
             //this._y = cy + Math.Cos(angle) * radius;
         }
