@@ -3,9 +3,24 @@ guid: f6ee17234c1102d46b8c91d6aae67ffe
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
+    100000: body
+    100002: cap
+    100004: //RootNode
+    100006: wheels
+    400000: body
+    400002: cap
+    400004: //RootNode
+    400006: wheels
+    2300000: body
+    2300002: cap
+    2300004: wheels
+    3300000: body
+    3300002: cap
+    3300004: wheels
     4300000: body
     4300002: cap
     4300004: wheels
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
