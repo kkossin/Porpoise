@@ -101,6 +101,8 @@ public class recycleManager : MonoBehaviour {
         }
         Debug.Log("Cleanup Over! Cleaned: " + points + "/" + trashCount + "pieces of trash.");
         Destroy(this.gameObject);
+
+        Application.Quit();
     }
 
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     int damage = 50;
-
+    bool isColliding;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,9 +13,12 @@ public class Bullet : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Destructable"))
+        if (isColliding) { return; }
+        isColliding = true;
+               if (other.CompareTag("Destructable"))
         {
             Ship target = other.gameObject.GetComponent<Ship>();
+            Debug.Log(target.hitPoints);
             if (target.hitPoints <= damage)
             {
                 Destroy(other.gameObject);
@@ -23,6 +26,7 @@ public class Bullet : MonoBehaviour {
             }
             else
             {
+                Destroy(this.gameObject);
                 target.hitPoints -= damage;
             }
         }
@@ -30,6 +34,6 @@ public class Bullet : MonoBehaviour {
    
     // Update is called once per frame
     void Update () {
-
+        isColliding = false;
 	}
 }

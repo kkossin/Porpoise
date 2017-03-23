@@ -52,7 +52,7 @@ public class Ship : MonoBehaviour {
         {     
             if (headset != null && headset.activeSelf)
             {
-                player = headset;
+                player = headset.transform.GetChild(2).gameObject;
             }
             else
             {

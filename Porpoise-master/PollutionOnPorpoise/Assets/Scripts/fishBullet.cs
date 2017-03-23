@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletManager : MonoBehaviour {
+public class fishBullet : MonoBehaviour {
     float lifeTime = 30.0f;
-    int damage = 20;
+    int damage = 5;
 
     void Awake()
     {
         Destroy(gameObject, lifeTime);
     }
+
     // Use this for initialization
     void Start () {
       
     }
+
+    // Update is called once per frame
+    void Update () {
+		
+	}
+
     public void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("Destructable"))
         {
             Ship target = other.gameObject.GetComponent<Ship>();
@@ -26,13 +34,9 @@ public class bulletManager : MonoBehaviour {
             }
             else
             {
+                Destroy(this.gameObject);
                 target.hitPoints -= damage;
             }
         }
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

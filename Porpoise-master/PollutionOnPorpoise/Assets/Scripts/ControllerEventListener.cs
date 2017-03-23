@@ -110,7 +110,7 @@ public class ControllerEventListener : MonoBehaviour {
     private void DoTriggerClicked(object sender, ControllerInteractionEventArgs e)
     {
        DebugLogger(e.controllerIndex, "TRIGGER", "clicked", e);
-        player.SendMessage("shoot", e.controllerIndex == 3);
+       player.SendMessage("shoot", VRTK_DeviceFinder.IsControllerLeftHand(VRTK_DeviceFinder.GetControllerByIndex(e.controllerIndex, true)));
     }
 
     private void DoTriggerUnclicked(object sender, ControllerInteractionEventArgs e)

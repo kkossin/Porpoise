@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour
+{
     //public GameObject[] boats;
     public List<GameObject> boats;
+    public GameObject water;
+    public float filthSpeed;
+    float currentClean;
+    public float clean;
     public GameObject boat1;
     public GameObject boat2;
     public GameObject boat3;
@@ -20,8 +25,21 @@ public class LevelManager : MonoBehaviour {
     private int currentBoatIndex = 0;
     public GameObject minigameObject;
 
-	// Use this for initialization
-	void Start () {
+    float waterR;
+    float waterG;
+    float waterB;
+
+   
+
+
+    // Use this for initialization
+    void Start()
+    {
+    waterR = water.transform.GetComponent<Renderer>().material.color.r;
+     waterG = water.transform.GetComponent<Renderer>().material.color.g;
+       waterB = water.transform.GetComponent<Renderer>().material.color.b;
+      
+        currentClean = clean;
         Debug.Log("START");
         boats = new List<GameObject>();
         boats.Add(boat1);
@@ -29,10 +47,11 @@ public class LevelManager : MonoBehaviour {
         boats.Add(boat3);
         boats.Add(boat4);
         timeToWave = new List<float>() { timeToWave4, timeToWave3, timeToWave2, timeToWave1 };
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         //for(int i = 0; i < currentBoatIndex; i++)
         //{
         //    if(boats[i] == null)//TODO: after a boat is null it is always null and so decrements every time. This is a baindaid fix maybe
@@ -45,17 +64,32 @@ public class LevelManager : MonoBehaviour {
 
         int i = 0;
         int j = -1;
+        updateFilth();
+        float normalizedFilth = 1-(float)currentClean/ (float)clean;
+        float normalizedR = waterR * normalizedFilth;
+        float normalizedG = waterG *normalizedFilth;
+        float normalizedB = waterB * normalizedFilth;
 
-        foreach(GameObject boat in boats)
+        water.transform.GetComponent<Renderer>().material.color = new Color(waterR - normalizedR, waterG - normalizedG, waterB - normalizedB);
+        //Debug.Log(normalizedFilth);
+        //if (water.transform.GetComponent<Renderer>().material.color.r <= 0 && water.transform.GetComponent<Renderer>().material.color.g <= 0 && water.transform.GetComponent<Renderer>().material.color.b <= 0)
+        if (normalizedFilth >= 1.0f)
         {
-            if(boat==null)
+            Application.Quit();
+        }
+        //Debug.Log(waterR - normalizedR);
+        //transform.renderer.materials[0].color = new Color(1.0, 1.0, 1.0, 1.0);
+        //filthPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(normalizedFilth* 256f, 32f);
+        foreach (GameObject boat in boats)
+        {
+            if (boat == null)
             {
                 boatsInLevel--;
                 j = i;
             }
             i++;
         }
-        if(j!=-1)
+        if (j != -1)
         {
             boats.RemoveAt(j);
             currentBoatIndex--;
@@ -75,21 +109,28 @@ public class LevelManager : MonoBehaviour {
                 boats[currentBoatIndex].GetComponent("Ship").SendMessage("toggleMoving");
 
                 currentBoatIndex++;
-               
+
             }
         }
 
-        if(boatsInLevel == 0)
+        if (boatsInLevel == 0)
         {
             youWin();
         }
 
-	}
+    }
+    void updateFilth()
+    {
+        if (boatsInLevel>0)
+        {
+            currentClean = currentClean - filthSpeed * Time.deltaTime;
+        }
+    }
     void youWin()
     {
         boatsInLevel = -1;
         Debug.Log("Winna!");
-       Instantiate(minigameObject);
+        Instantiate(minigameObject);
 
     }
 }

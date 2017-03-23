@@ -7,9 +7,14 @@ public class Sludge : MonoBehaviour {
     public Vector3 direction;
     public bool fired = false;
     private float speed = 0.03f;
+    public GameObject effect;
+    // Use this for initialization
+    void Awake ()
+    {
+        Destroy(gameObject, 15.0f);
+    }
 
-	// Use this for initialization
-	void Start () {
+    void Start () {
 		
 	}
 	
@@ -18,7 +23,7 @@ public class Sludge : MonoBehaviour {
         
         if (fired)
         {
-            Debug.Log(transform.position.x + " " + transform.position.y + " " + transform.position.z);
+           // Debug.Log(transform.position.x + " " + transform.position.y + " " + transform.position.z);
             float newX = this.transform.position.x + speed * direction.x;
             float newY = this.transform.position.y + speed * direction.y;
             float newZ = this.transform.position.z + speed * direction.z;
@@ -33,10 +38,12 @@ public class Sludge : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) //This tag doesn't exist yet
+        if (other.CompareTag("MainCamera"))
         {
-            //TODO = blur player's vision
+            //Debug.Log("You done been hit, son!");
+            Instantiate(effect);
+            GameObject.Find("Player").GetComponent<PlayerController>().lives--;
+            Destroy(this.gameObject);
         }
     }
-
 }

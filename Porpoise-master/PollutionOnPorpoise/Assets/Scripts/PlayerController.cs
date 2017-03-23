@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject rightController;
 
     public Rigidbody fishBullet;
+    public int lives;
 
     public enum GunType
     {
@@ -20,12 +21,16 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        lives = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (lives <= 0)
+        {
+            Debug.Log("Game over man. Game over.");
+            Application.Quit();
+        }
 	}
 
     public void changeGunType(int button)
@@ -78,17 +83,13 @@ public class PlayerController : MonoBehaviour {
 
     void shoot(bool left)
     {
-        Transform tempTransform;
-        
-
-
         if(left && leftGunType!=GunType.hand)
         {
             Debug.Log("Shooting Left");
             fireSemiAuto(leftController.transform);
             leftController.SendMessage("TriggerHapticPulse", .65f);
         }
-        else if(rightGunType!=GunType.hand)
+        else if(!left && rightGunType!=GunType.hand)
         {
             Debug.Log("Shooting Right");
             fireSemiAuto(rightController.transform);
