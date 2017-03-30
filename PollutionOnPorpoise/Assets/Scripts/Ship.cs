@@ -30,6 +30,15 @@ public class Ship : MonoBehaviour {
         angle = UnityEngine.Random.Range(0, 2.0f * (float)Math.PI);
         float offset = UnityEngine.Random.Range(0, 5.0f);
         InvokeRepeating("shoot", 5.0f + offset, 5.0f); //starting in 5+ seconds, shoot will be called every 5 seconds
+
+		if (headset != null && headset.activeSelf)
+		{
+			player = headset.transform.GetChild(2).gameObject;
+		}
+		else
+		{
+			player = simulator;
+		}
     }
    
     void Update () {
@@ -43,6 +52,11 @@ public class Ship : MonoBehaviour {
             transform.position = new Vector3((float)(cx + Math.Sin(angle) * radius), 1.5f, (float)(cy + Math.Cos(angle) * radius));
             //this._x = cx + Math.Sin(angle) * radius;
             //this._y = cy + Math.Cos(angle) * radius;
+
+			//Rotation
+			Vector3 rotateDirection = (player.transform.position - transform.position).normalized;
+			transform.rotation = Quaternion.LookRotation(rotateDirection);
+			transform.Rotate(0, 90, 0);
         }
     }
 
@@ -50,14 +64,6 @@ public class Ship : MonoBehaviour {
     {
         if (this.transform.position.y > 0.0f)
         {     
-            if (headset != null && headset.activeSelf)
-            {
-                player = headset.transform.GetChild(2).gameObject;
-            }
-            else
-            {
-                player = simulator;
-            }
             Vector3 shotDirection = (player.transform.position - transform.position).normalized;
             Sludge newSludge = Instantiate(sludge).GetComponent<Sludge>();
             newSludge.transform.position = this.transform.position;
