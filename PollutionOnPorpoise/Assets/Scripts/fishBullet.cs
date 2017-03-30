@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class fishBullet : MonoBehaviour {
     float lifeTime = 30.0f;
-    int damage = 5;
+    public int damage = 5;
 
     void Awake()
     {
