@@ -33,8 +33,6 @@ public class LevelManager : MonoBehaviour
     float waterG;
     float waterB;
 
-    public GameObject timeDisplay;
-   
 
 
     // Use this for initialization
