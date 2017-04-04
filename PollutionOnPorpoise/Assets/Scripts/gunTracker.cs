@@ -85,7 +85,7 @@ namespace Assets.Scripts
                     if (executeFire)
                     {
                         fireTimerLeft = 0;
-                       // leftGunAutoAmmoCurrent--;
+                        leftGunAutoAmmoCurrent--;
                     }
                     return true;
                 }
@@ -98,7 +98,7 @@ namespace Assets.Scripts
                     if (executeFire)
                     {
                         fireTimerRight = 0;
-                        //rightGunAutoAmmoCurrent--;
+                        rightGunAutoAmmoCurrent--;
                     }
                     return true;
                 }

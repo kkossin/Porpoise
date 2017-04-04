@@ -8,8 +8,12 @@ using System;
 public class recycleManager : MonoBehaviour {
     int trashCount;
     //int total = 0;   
-    public int timeTowin;
+    public int timeToWin;
     private Timer gameTimer;
+    public GameObject timerDisplay;
+
+    private DateTime startTime;
+    private DateTime endTime;
   //  private System.Random numGen;
 
     int points = 0;
@@ -18,22 +22,27 @@ public class recycleManager : MonoBehaviour {
 
     bool isGameOver = false;
 
+    public int trashMin;
+    public int trashMax;
+
     List<GameObject> trash;
 	// Use this for initialization
 	void Start () {
-        Debug.Log("Running Timer for: "+(timeTowin * 1000));
-        gameTimer = new Timer(timeTowin*1000);
+        
+        Debug.Log("Running Timer for: "+(timeToWin * 1000));
+        gameTimer = new Timer(timeToWin*1000);
         gameTimer.Elapsed += TimerTick;
         trash = new List<GameObject>();
        // numGen = new System.Random((int)Time.time);
         spawnTrash();
         gameTimer.Start();
+        startTime = DateTime.Now;      
         UnityEngine.Random.InitState( (int)System.DateTime.Now.Ticks);
     }
 
     void spawnTrash()
     {
-        trashCount = UnityEngine.Random.Range(5, 11);
+        trashCount = UnityEngine.Random.Range(trashMin, trashMax);
         //total = trashCount;
       //  Debug.Log("Trash: " + trashCount);
         for (int i=0; i < trashCount;i++)
@@ -75,6 +84,8 @@ public class recycleManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        String elapsed= (timeToWin-(DateTime.Now - startTime).Seconds).ToString();
+        timerDisplay.SendMessage("UpdateText", "Trash Collected: "+points+"\n"+"Time Remaining: "+elapsed);
         if(trash.Count<=0)
         {
             isGameOver = true;

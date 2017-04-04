@@ -5,8 +5,12 @@ using System.Timers;
 
 public class LevelManager : MonoBehaviour
 {
+
+    public List<GameObject> timerDisplays;
+
     //public GameObject[] boats;
-    public List<GameObject> boats;
+    public List<GameObject> boats;//TODO: Use this list in the inspector to populate boats!
+    //TODO: Add a list of levels setups to move through once one is complete
     public GameObject water;
     public float filthSpeed;
     float currentClean;
@@ -29,6 +33,7 @@ public class LevelManager : MonoBehaviour
     float waterG;
     float waterB;
 
+    public GameObject timeDisplay;
    
 
 
@@ -98,6 +103,7 @@ public class LevelManager : MonoBehaviour
         if (timeToWave.Count != 0)
         {
             timeToWave[timeToWave.Count - 1] -= Time.deltaTime;
+            displayTime(timeToWave[timeToWave.Count-1].ToString("0.0"));
 
             if (timeToWave[timeToWave.Count - 1] <= 0)
             {
@@ -124,6 +130,15 @@ public class LevelManager : MonoBehaviour
         if (boatsInLevel>0)
         {
             currentClean = currentClean - filthSpeed * Time.deltaTime;
+        }
+    }
+
+    private void displayTime(string time)
+    {
+        
+        foreach(GameObject current in timerDisplays)
+        {
+           current.BroadcastMessage("UpdateText",time);
         }
     }
     void youWin()
