@@ -5,6 +5,7 @@ using UnityEngine;
 public class fishBullet : MonoBehaviour {
     float lifeTime = 30.0f;
     public int damage = 5;
+	public AudioClip impactSound;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class fishBullet : MonoBehaviour {
         
 		if (other.CompareTag ("Destructable")) {
 			Ship target = other.gameObject.GetComponent<Ship> ();
+			other.gameObject.GetComponent<AudioSource> ().PlayOneShot (impactSound);
 			if (target.hitPoints <= damage)
 			{
 				Destroy (other.gameObject);

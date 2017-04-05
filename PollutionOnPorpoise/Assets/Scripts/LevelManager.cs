@@ -125,6 +125,13 @@ public class LevelManager : MonoBehaviour
 					Debug.Log ("Current: " + currentBoatIndex);
 					Debug.Log ("Boats: " + boats.Count);
 					timeToWave.RemoveAt (timeToWave.Count - 1);
+					if (boats [currentBoatIndex].GetComponent<Ship>().newBoatSounded == false) 
+					{
+						AudioClip FogHorn = boats [currentBoatIndex].GetComponent<AudioSource> ().clip;
+						boats [currentBoatIndex].GetComponent<AudioSource> ().PlayOneShot (FogHorn, 1.0f);
+						boats [currentBoatIndex].GetComponent<Ship> ().newBoatSounded = true;
+
+					}
 					Vector3 position = boats [currentBoatIndex].transform.position;
 					boats [currentBoatIndex].transform.position = new Vector3 (position.x + Random.Range (8, 12), position.y + Random.Range (8, 12), 0.9f);
 					boats [currentBoatIndex].GetComponent ("Ship").SendMessage ("toggleMoving");

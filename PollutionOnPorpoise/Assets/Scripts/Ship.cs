@@ -18,12 +18,14 @@ public class Ship : MonoBehaviour {
     GameObject simulator;
     private GameObject player;
     private float bulletSpeed;
+	public bool newBoatSounded;
  
     //int speed = 6; // speed of travel (seconds to make a complete circuit)
     double speedScale = (0.001 * 2 * Math.PI) / .05;
 
     void Start () {
         //speedScale = (0.001 * 2 * Math.PI) / speed;
+		newBoatSounded = false;
         headset = GameObject.Find("[CameraRig]");
         simulator = GameObject.Find("VRSimulatorCameraRig");
 
