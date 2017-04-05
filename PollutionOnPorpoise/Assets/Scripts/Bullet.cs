@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    Vector3 scale, scaleTarget;
+    float xScaleTarget, yScaleTarget, zScaleTarget;
     int damage = 50;
-    bool isColliding;
-	// Use this for initialization
+    bool isColliding = false;
+    bool expand = false;
+    float speed = 1.0f;
+
 	void Start () {
-		
-	}
+        scale = transform.localScale;
+        scaleTarget = scale * 10;
+    }
 
     public void OnTriggerEnter(Collider other)
     {
         if (isColliding) { return; }
         isColliding = true;
-               if (other.CompareTag("Destructable"))
+        if (other.CompareTag("Destructable"))
         {
             Ship target = other.gameObject.GetComponent<Ship>();
             Debug.Log(target.hitPoints);
@@ -30,10 +35,26 @@ public class Bullet : MonoBehaviour {
                 target.hitPoints -= damage;
             }
         }
+        else if (other.CompareTag("Ocean"))
+        {
+            if (transform.position.x > 3 || transform.position.x < -3 || transform.position.z > 3 || transform.position.z < -3)
+            {
+                expand = true;
+            }
+        }
     }   
    
-    // Update is called once per frame
     void Update () {
         isColliding = false;
-	}
+        
+        if (transform.localScale == scaleTarget)
+        {
+            expand = false;
+        }
+
+        if (expand) {
+            //might need to replace first parameter with "scale"
+            transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, speed * Time.deltaTime);
+        }
+    }
 }
