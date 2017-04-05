@@ -16,12 +16,17 @@ public class PlayerController : MonoBehaviour
     bool leftIsShootingAuto = false;
     bool rightIsShootingAuto = false;
 
+    bool leftShieldOn = false;
+    bool rightShieldOn = false;
+    public GameObject leftShield;
+    public GameObject rightShield;
+
     public enum GunType
     {
         hand = 0,
         semiAuto = 1,
-        auto = 2
-
+        auto = 2,
+        shield = 3
     };
 
     public GunType leftGunType;
@@ -39,18 +44,17 @@ public class PlayerController : MonoBehaviour
     {      
         if (lives <= 0)
         {
-            Debug.Log("Game over man. Game over.");
+            //Debug.Log("Game over man. Game over.");
             Application.Quit();
         }
-
         updateGunState(Time.deltaTime);
+        updateShieldState();
     }
-
 
     public void updateGunState(float deltaTime)
     {
         guns.update(deltaTime);
-     //  Debug.Log("Left Fire delay: +"+guns.fireTimerLeft+ " Right Fire delay: +" + guns.fireTimerRight);
+        //Debug.Log("Left Fire delay: +"+guns.fireTimerLeft+ " Right Fire delay: +" + guns.fireTimerRight);
         if (leftIsShootingAuto&&guns.canShoot(true,true))
         {
             leftController.SendMessage("TriggerHapticPulse", .65f);
@@ -63,6 +67,7 @@ public class PlayerController : MonoBehaviour
             fireBullet(rightController.transform);
         }
     }
+
     public void changeGunType(int button)
     {
         //a 1 in the tens place = left hand
@@ -89,6 +94,12 @@ public class PlayerController : MonoBehaviour
                 leftController.GetComponent<VRTK.VRTK_InteractGrab>().enabled = false;
                 break;
 
+            case 13:
+                leftGunType = GunType.shield;
+                Debug.Log("Switched to shield");
+                leftController.GetComponent<VRTK.VRTK_InteractGrab>().enabled = false;
+                break;
+
             case 20:
                 rightGunType = GunType.hand;
                 Debug.Log("Switched to hand");
@@ -107,15 +118,16 @@ public class PlayerController : MonoBehaviour
                 rightController.GetComponent<VRTK.VRTK_InteractGrab>().enabled = false;                
                 break;
 
+            case 23:
+                rightGunType = GunType.shield;
+                Debug.Log("Switched to shield");
+                rightController.GetComponent<VRTK.VRTK_InteractGrab>().enabled = false;
+                break;
+
             default:
                 break;
         }
-
-
-
-
     }
-
 
     void shoot(bool left)
     {
@@ -126,7 +138,8 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Shooting Left");
                 fireBullet(leftController.transform);
                 leftController.SendMessage("TriggerHapticPulse", .65f);
-            }else if (leftGunType == GunType.auto)
+            }
+            else if (leftGunType == GunType.auto)
             {
                 leftIsShootingAuto = true;
             }
@@ -138,22 +151,18 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Shooting Right");
                 fireBullet(rightController.transform);
                 rightController.SendMessage("TriggerHapticPulse", .65f);
-            }else if (rightGunType == GunType.auto)
+            }
+            else if (rightGunType == GunType.auto)
             {
                 rightIsShootingAuto = true;
             }
         }
-
-   
-
-
-
     }
 
     void endShoot(bool left)
     {
         Debug.Log("Done shooting");
-        if(left)
+        if (left)
         {
             leftIsShootingAuto = false;
         }
@@ -179,5 +188,33 @@ public class PlayerController : MonoBehaviour
         clone.velocity = new Vector3(forward.x * speed,forward.y * speed, forward.z * speed);
         
         //clone.velocity = new Vector3(-.5f* speed, 0f* speed, .9f * speed);
+    }
+
+    void updateShieldState()
+    {
+        if (leftGunType == GunType.shield && !leftShieldOn)
+        {
+            Vector3 positionLeft = new Vector3(0, 0, 0);
+            Quaternion rotationLeft = new Quaternion(0, 0, 0, 0);
+            Instantiate(leftShield, positionLeft, rotationLeft, leftController.transform);
+            leftShieldOn = true;
+        }
+        if (rightGunType == GunType.shield && !rightShieldOn)
+        {
+            Vector3 positionRight = new Vector3(0, 0, 0);
+            Quaternion rotationRight = new Quaternion(0, 0, 0, 0);
+            Instantiate(rightShield, positionRight, rotationRight, rightController.transform);
+            rightShieldOn = true;
+        }
+        if (leftGunType != GunType.shield && leftShieldOn)
+        {
+            Destroy(leftShield);
+            leftShieldOn = false;
+        }
+        if (rightGunType != GunType.shield && rightShieldOn)
+        {
+            Destroy(rightShield);
+            rightShieldOn = false;
+        }
     }
 }

@@ -45,5 +45,9 @@ public class Sludge : MonoBehaviour {
             GameObject.Find("Player").GetComponent<PlayerController>().lives--;
             Destroy(this.gameObject);
         }
+        else if (other.CompareTag("Shield"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
