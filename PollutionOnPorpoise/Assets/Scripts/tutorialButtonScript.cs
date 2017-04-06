@@ -11,7 +11,7 @@ public class tutorialButtonScript : MonoBehaviour {
 	void Start () {
 		howToText = this.transform.Find ("tutorialText");
 		howToText.gameObject.SetActive (true);
-		controlsText = transform.Find ("tutorialText1");
+		controlsText = transform.Find ("actualControls");
 		controlsText.gameObject.SetActive (false);
 		showControls = false;
 	}

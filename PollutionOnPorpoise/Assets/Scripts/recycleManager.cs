@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
 using System;
-
+using UnityEngine.SceneManagement;
 
 public class recycleManager : MonoBehaviour {
     int trashCount;
@@ -113,7 +113,8 @@ public class recycleManager : MonoBehaviour {
         Debug.Log("Cleanup Over! Cleaned: " + points + "/" + trashCount + "pieces of trash.");
         Destroy(this.gameObject);
 
-        Application.Quit();
+       
+         SceneManager.LoadScene("Game");
     }
 
 }

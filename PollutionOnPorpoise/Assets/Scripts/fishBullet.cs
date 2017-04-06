@@ -48,7 +48,7 @@ public class fishBullet : MonoBehaviour {
 			tutorialButtonScript tbs = other.gameObject.GetComponent<tutorialButtonScript> ();
 			tbs.showControls = true;
 		}
-		else if (other.CompareTag ("Start"))
+		else if (other.CompareTag ("start"))
 		{
 			StartScript ss = other.gameObject.GetComponent<StartScript> ();
 			ss.started = true;

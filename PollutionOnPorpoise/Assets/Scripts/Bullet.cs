@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    Vector3 scale, scaleTarget;
-    float xScaleTarget, yScaleTarget, zScaleTarget;
+    Vector3 scaleTarget, colliderScaleTarget;
     int damage = 50;
     bool isColliding = false;
     bool expand = false;
     float speed = 1.0f;
 
 	void Start () {
-        scale = transform.localScale;
-        scaleTarget = scale * 10;
+        scaleTarget = transform.localScale * 10;
+        colliderScaleTarget = GetComponent<Collider>().transform.localScale * 10;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -55,6 +54,7 @@ public class Bullet : MonoBehaviour {
         if (expand) {
             //might need to replace first parameter with "scale"
             transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, speed * Time.deltaTime);
+            this.GetComponent<Collider>().transform.localScale = Vector3.Lerp(transform.localScale, colliderScaleTarget, speed * Time.deltaTime);
         }
     }
 }

@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject leftController;
     public GameObject rightController;
 
+    public GameObject leftControllerModel;
+    public GameObject rightControllerModel;
+
     public Rigidbody fishBullet;
+    public Rigidbody fishBulletAuto;
+
     public int lives;
 
     gunTracker guns;
@@ -20,6 +26,8 @@ public class PlayerController : MonoBehaviour
     bool rightShieldOn = false;
     public GameObject leftShield;
     public GameObject rightShield;
+    private GameObject activeLeftShield;
+    private GameObject activeRightShield;
 
     public enum GunType
     {
@@ -45,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (lives <= 0)
         {
             //Debug.Log("Game over man. Game over.");
-            Application.Quit();
+            gameOver();
         }
         updateGunState(Time.deltaTime);
         updateShieldState();
@@ -58,13 +66,13 @@ public class PlayerController : MonoBehaviour
         if (leftIsShootingAuto&&guns.canShoot(true,true))
         {
             leftController.SendMessage("TriggerHapticPulse", .65f);
-            fireBullet(leftController.transform);
+            fireBullet(leftController.transform,leftGunType);
         }
 
         if (rightIsShootingAuto && guns.canShoot(false, true))
         {
             rightController.SendMessage("TriggerHapticPulse", .65f);
-            fireBullet(rightController.transform);
+            fireBullet(rightController.transform,rightGunType);
         }
     }
 
@@ -136,7 +144,7 @@ public class PlayerController : MonoBehaviour
             if (leftGunType == GunType.semiAuto)
             {
                 //Debug.Log("Shooting Left");
-                fireBullet(leftController.transform);
+                fireBullet(leftController.transform,leftGunType);
                 leftController.SendMessage("TriggerHapticPulse", .65f);
             }
             else if (leftGunType == GunType.auto)
@@ -149,7 +157,7 @@ public class PlayerController : MonoBehaviour
             if (rightGunType == GunType.semiAuto)
             {
                 //Debug.Log("Shooting Right");
-                fireBullet(rightController.transform);
+                fireBullet(rightController.transform,rightGunType);
                 rightController.SendMessage("TriggerHapticPulse", .65f);
             }
             else if (rightGunType == GunType.auto)
@@ -172,10 +180,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void fireBullet(Transform controller)
+    void fireBullet(Transform controller, GunType fireMode)
     {
         Rigidbody clone;
-        clone = Instantiate(fishBullet, controller.position, new Quaternion(0, 0, 0, 0));
+        
+        if(fireMode==GunType.semiAuto)
+        {
+            clone = Instantiate(fishBullet, controller.position, new Quaternion(0, 0, 0, 0));
+        }
+        else if(fireMode==GunType.auto)
+        {
+            clone = Instantiate(fishBulletAuto, controller.position, new Quaternion(0, 0, 0, 0));
+        }
+        else//default
+        {
+            clone = Instantiate(fishBullet, controller.position, new Quaternion(0, 0, 0, 0));
+        }
+
+       
 
         float speed = 15.0f;//TODO: store somewhere better
 
@@ -194,27 +216,36 @@ public class PlayerController : MonoBehaviour
     {
         if (leftGunType == GunType.shield && !leftShieldOn)
         {
-            Vector3 positionLeft = new Vector3(0, 0, 0);
-            Quaternion rotationLeft = new Quaternion(0, 0, 0, 0);
-            Instantiate(leftShield, positionLeft, rotationLeft, leftController.transform);
+            Vector3 positionLeft = leftControllerModel.transform.position;
+            Quaternion rotationLeft = leftControllerModel.transform.rotation;
+            activeLeftShield = Instantiate(leftShield, positionLeft, rotationLeft, leftControllerModel.transform);
+            activeLeftShield.transform.Rotate(0, -90, 0);
+            activeLeftShield.transform.Rotate(180, 0, 0);
             leftShieldOn = true;
         }
-        if (rightGunType == GunType.shield && !rightShieldOn)
+        else if (rightGunType == GunType.shield && !rightShieldOn)
         {
-            Vector3 positionRight = new Vector3(0, 0, 0);
-            Quaternion rotationRight = new Quaternion(0, 0, 0, 0);
-            Instantiate(rightShield, positionRight, rotationRight, rightController.transform);
+            Vector3 positionRight = rightControllerModel.transform.position;
+            Quaternion rotationRight = rightControllerModel.transform.rotation;
+            activeRightShield = Instantiate(rightShield, positionRight, rotationRight, rightControllerModel.transform);
+            activeRightShield.transform.Rotate(0, -90, 0);
+            activeRightShield.transform.Rotate(180, 0, 0);           
             rightShieldOn = true;
         }
-        if (leftGunType != GunType.shield && leftShieldOn)
+        else if (leftGunType != GunType.shield && leftShieldOn)
         {
-            Destroy(leftShield);
+            Destroy(activeLeftShield);
             leftShieldOn = false;
         }
-        if (rightGunType != GunType.shield && rightShieldOn)
+        else if (rightGunType != GunType.shield && rightShieldOn)
         {
-            Destroy(rightShield);
+            Destroy(activeRightShield);
             rightShieldOn = false;
         }
+    }
+
+    void gameOver()
+    {
+        SceneManager.LoadScene("Game");
     }
 }

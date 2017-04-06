@@ -1,4 +1,4 @@
-Initialize engine version: 5.5.2f1 (3829d7f588f3)
+Initialize engine version: 5.6.0f3 (497a0f351392)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
@@ -7,30 +7,28 @@ Direct3D:
     VRAM:     3039 MB
     Driver:   21.21.13.7892
 Begin MonoManager ReloadAssembly
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.VR.dll (this message is harmless)
-Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.VR.dll into Unity Child Domain
-- Completed reload, in  0.020 seconds
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\Porpoise-master\PollutionOnPorpoise\PoP_Data\Managed\System.dll (this message is harmless)
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.VR.dll (this message is harmless)
+Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.VR.dll into Unity Child Domain
+- Completed reload, in  0.028 seconds
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initialized touch support.
 OpenVR initialized!
  
-(Filename:  Line: 381)
+(Filename:  Line: 424)
 
-UnloadTime: 0.380671 ms
+UnloadTime: 0.622080 ms
 Connected to lighthouse:LHR-ED4A5BBB
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -39,46 +37,20 @@ START
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 356c -> priority: 1 
-  Thread -> id: e8c -> priority: 1 
-Current: 0
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 28ac -> priority: 1 
+  Thread -> id: 63e4 -> priority: 1 
+  Thread -> id: 4dd0 -> priority: 1 
+  Thread -> id: 6044 -> priority: 1 
+Switched to autofire
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Boats: 4
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Current: 1
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Boats: 4
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Current: 2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Boats: 4
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Current: 3
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Boats: 4
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Game over man. Game over.
+Switched to fish
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 OpenVR Shutdown
  
-(Filename:  Line: 815)
+(Filename:  Line: 889)
 
