@@ -197,9 +197,9 @@ public class PlayerController : MonoBehaviour
             clone = Instantiate(fishBullet, controller.position, new Quaternion(0, 0, 0, 0));
         }
 
-       
 
-        float speed = 15.0f;//TODO: store somewhere better
+
+        float speed = fishBullet.GetComponent<fishBullet>().speed;
 
         Vector3 forward = controller.forward;
         //Debug.Log(forward);

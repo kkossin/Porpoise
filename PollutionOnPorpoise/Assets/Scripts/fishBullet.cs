@@ -5,6 +5,7 @@ using UnityEngine;
 public class fishBullet : MonoBehaviour {
     float lifeTime = 30.0f;
     public int damage = 5;
+    public float speed = 20f;
 	public AudioClip impactSound;
 
     void Awake()

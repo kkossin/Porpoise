@@ -13,6 +13,7 @@ public class Ship : MonoBehaviour {
 
     private int radius = 16; // radius of circle
     private double angle;
+    private Color originalColor;
 
     GameObject headset;
     GameObject simulator;
@@ -28,6 +29,7 @@ public class Ship : MonoBehaviour {
 		newBoatSounded = false;
         headset = GameObject.Find("[CameraRig]");
         simulator = GameObject.Find("VRSimulatorCameraRig");
+        originalColor = transform.GetComponent<Renderer>().material.color;
 
         angle = UnityEngine.Random.Range(0, 2.0f * (float)Math.PI);
         float offset = UnityEngine.Random.Range(0, 5.0f);
@@ -59,6 +61,13 @@ public class Ship : MonoBehaviour {
 			Vector3 rotateDirection = (player.transform.position - transform.position).normalized;
 			transform.rotation = Quaternion.LookRotation(rotateDirection);
 			transform.Rotate(0, 90, 0);
+        }
+
+        if (hitPoints < 30)
+        {
+            transform.GetComponent<Renderer>().material.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            transform.GetComponent<Renderer>().material.color = originalColor;
         }
     }
 

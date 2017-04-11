@@ -23,6 +23,9 @@ public class LevelManager : MonoBehaviour
     public GameObject boat2;
     public GameObject boat3;
     public GameObject boat4;
+
+    public GameObject pufferFish;
+
     public int boatsInLevel;
     public float timeToWave1;
     public float timeToWave2;
@@ -40,6 +43,11 @@ public class LevelManager : MonoBehaviour
 
     StartScript ss;
 
+    public float pufferSpawnDelay;//time in seconds for a new puffer to spawn default 5?
+    float pufferTimer = 0f;
+
+    public int initialPuffers;//default 2?
+
     // Use this for initialization
     void Start()
     {
@@ -52,6 +60,8 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+
         startButt.SetActive(false);
         exitButt.SetActive(false);
         tutorialButt.SetActive(false);
@@ -67,11 +77,23 @@ public class LevelManager : MonoBehaviour
         boats.Add(boat3);
         boats.Add(boat4);
         timeToWave = new List<float>() { timeToWave4, timeToWave3, timeToWave2, timeToWave1 };
+
+   for(int i=0;i<initialPuffers;i++)
+        {
+            spawnPuffer();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        pufferTimer += Time.deltaTime;
+        if(pufferTimer>=pufferSpawnDelay)
+        {
+            pufferTimer = 0f;
+            spawnPuffer();
+        }
+
 
         if (ss.started) {
             if (needsToWake)
@@ -79,16 +101,7 @@ public class LevelManager : MonoBehaviour
                 Awake();
                 needsToWake = false;
             }
-            //for(int i = 0; i < currentBoatIndex; i++)
-            //{
-            //    if(boats[i] == null)//TODO: after a boat is null it is always null and so decrements every time. This is a baindaid fix maybe
-            //    {
-            //        //Debug.Log("Removing boat at: " + i);  
-            //        boats.remo             
-            //        boatsInLevel--;
-            //    }
-            //}
-
+        
             int i = 0;
             int j = -1;
             updateFilth();
@@ -155,6 +168,14 @@ public class LevelManager : MonoBehaviour
         {
             currentClean = currentClean - filthSpeed * Time.deltaTime;
         }
+    }
+
+    private void spawnPuffer()
+    {
+
+        Vector3 pos = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f));
+        Instantiate(pufferFish, pos,new Quaternion(0,0,0,0));
+
     }
 
     private void displayTime(string time)

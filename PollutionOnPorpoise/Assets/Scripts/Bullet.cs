@@ -40,6 +40,19 @@ public class Bullet : MonoBehaviour {
             {
                 expand = true;
             }
+        }else if (other.CompareTag("Exit"))
+        {
+            Application.Quit();
+        }
+        else if (other.CompareTag("Tutorial"))
+        {
+            tutorialButtonScript tbs = other.gameObject.GetComponent<tutorialButtonScript>();
+            tbs.showControls = true;
+        }
+        else if (other.CompareTag("start"))
+        {
+            StartScript ss = other.gameObject.GetComponent<StartScript>();
+            ss.started = true;
         }
     }   
    
