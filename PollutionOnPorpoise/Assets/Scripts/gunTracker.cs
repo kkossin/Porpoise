@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     class gunTracker
     {
-        public float reloadDelay=.65f;//time in seconds between reloads of a bullet
+        public float reloadDelay=.5f;//time in seconds between reloads of a bullet
         public float fireDelay=.1f;//time in seconds between fires of a bullet
 
         public float reloadTimerLeft = 0;
@@ -17,7 +17,7 @@ namespace Assets.Scripts
         public float reloadTimerRight;
         public float fireTimerRight;
 
-        public int gunAutoAmmoMax = 15;
+        public int gunAutoAmmoMax = 25;
 
 
 

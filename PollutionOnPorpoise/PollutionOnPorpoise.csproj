@@ -78,6 +78,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Explosion System\Demo\Script (for Demo)\ExplosionControl.cs" />
+    <Compile Include="Assets\Explosion System\Scripts\GraphicExplosion.cs" />
+    <Compile Include="Assets\Explosion System\Scripts\PhysicalExplosion.cs" />
+    <Compile Include="Assets\Explosion System\Scripts\light_control.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\ControllerEventListener.cs" />
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
@@ -407,6 +411,7 @@
     <Compile Include="Assets\trashDestroyer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Explosion System\Shader\Exposion.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />

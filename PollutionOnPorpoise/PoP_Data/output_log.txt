@@ -17,18 +17,18 @@ Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOn
 Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.VR.dll (this message is harmless)
 Loading E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\UnityEngine.VR.dll into Unity Child Domain
-- Completed reload, in  0.028 seconds
+- Completed reload, in  0.029 seconds
 Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Josh\School\Alternative Game Dev\Game\Porpoise\PollutionOnPorpoise\PoP_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+desktop: 1440x900 60Hz; virtual: 1440x900 at 0,0
 <RI> Initialized touch support.
 OpenVR initialized!
  
 (Filename:  Line: 424)
 
-UnloadTime: 0.622080 ms
+UnloadTime: 0.488191 ms
 Connected to lighthouse:LHR-ED4A5BBB
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -38,18 +38,10 @@ START
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 28ac -> priority: 1 
-  Thread -> id: 63e4 -> priority: 1 
-  Thread -> id: 4dd0 -> priority: 1 
-  Thread -> id: 6044 -> priority: 1 
-Switched to autofire
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Switched to fish
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
+  Thread -> id: 4390 -> priority: 1 
+  Thread -> id: 4388 -> priority: 1 
+  Thread -> id: 438c -> priority: 1 
+  Thread -> id: 4398 -> priority: 1 
 OpenVR Shutdown
  
 (Filename:  Line: 889)
