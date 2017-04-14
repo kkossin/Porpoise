@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
     public GameObject boat4;
 
     public GameObject pufferFish;
+    public int maxPuffer;
+    int pufferCount = 0;
 
     public int boatsInLevel;
     public float timeToWave1;
@@ -60,6 +62,8 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
+        if (ss==null||!ss.started) { return; }
+
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
 
         startButt.SetActive(false);
@@ -87,15 +91,18 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pufferTimer += Time.deltaTime;
-        if(pufferTimer>=pufferSpawnDelay)
-        {
-            pufferTimer = 0f;
-            spawnPuffer();
-        }
-
+   
 
         if (ss.started) {
+            pufferTimer += Time.deltaTime;
+
+            if (pufferTimer >= pufferSpawnDelay)
+            {
+                pufferTimer = 0f;
+                spawnPuffer();
+            }
+
+
             if (needsToWake)
             {
                 Awake();
@@ -172,12 +179,14 @@ public class LevelManager : MonoBehaviour
 
     private void spawnPuffer()
     {
-
-        Vector3 pos = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f));
-        Instantiate(pufferFish, pos,new Quaternion(0,0,0,0));
+        if(pufferCount<maxPuffer)
+        {
+            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f));
+            Instantiate(pufferFish, pos, new Quaternion(0, 0, 0, 0));
+        }
 
     }
-
+    
     private void displayTime(string time)
     {
 

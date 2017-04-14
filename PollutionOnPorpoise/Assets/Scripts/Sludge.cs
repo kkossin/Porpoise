@@ -8,6 +8,8 @@ public class Sludge : MonoBehaviour {
     public bool fired = false;
     private float speed = 0.03f;
     public GameObject effect;
+    public AudioClip impactSound;
+   // public AudioSource source;
     // Use this for initialization
     void Awake ()
     {
@@ -33,6 +35,7 @@ public class Sludge : MonoBehaviour {
         if (this.transform.position.y < 0)
         {
             Destroy(this);
+            return;
         }
 
         if(GetComponent<LevelManager>().boatsInLevel<0)
@@ -45,6 +48,7 @@ public class Sludge : MonoBehaviour {
     {
         if (other.CompareTag("MainCamera"))
         {
+           other.GetComponent<AudioSource>().PlayOneShot(impactSound);
             //Debug.Log("You done been hit, son!");
             Instantiate(effect);
             GameObject.Find("Player").GetComponent<PlayerController>().lives--;

@@ -10,7 +10,12 @@ public class Bullet : MonoBehaviour {
     bool expand = false;
     float speed = 1.0f;
 
-	void Start () {
+    public GameObject explosion;
+
+
+    public AudioClip impactSound;
+
+    void Start () {
         scaleTarget = transform.localScale * 10;
         colliderScaleTarget = GetComponent<Collider>().transform.localScale * 10;
     }
@@ -19,14 +24,20 @@ public class Bullet : MonoBehaviour {
     {
         if (isColliding) { return; }
         isColliding = true;
+
         if (other.CompareTag("Destructable"))
         {
             Ship target = other.gameObject.GetComponent<Ship>();
-            Debug.Log(target.hitPoints);
+            other.gameObject.GetComponent<AudioSource>().PlayOneShot(impactSound);
+            //Debug.Log(target.hitPoints);
             if (target.hitPoints <= damage)
             {
+                Vector3 pos = other.transform.position;
                 Destroy(other.gameObject);
+                Instantiate(explosion, pos+ new Vector3(0,.5f,0), new Quaternion(0, 0, 0, 0));
                 Destroy(this.gameObject);
+             
+
             }
             else
             {

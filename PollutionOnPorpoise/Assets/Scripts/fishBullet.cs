@@ -8,9 +8,10 @@ public class fishBullet : MonoBehaviour {
     public float speed = 20f;
 	public AudioClip impactSound;
 
+    public GameObject explosion;   
     void Awake()
     {
-        Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifeTime);     
     }
 
     // Use this for initialization
@@ -30,9 +31,13 @@ public class fishBullet : MonoBehaviour {
 			Ship target = other.gameObject.GetComponent<Ship> ();
 			other.gameObject.GetComponent<AudioSource> ().PlayOneShot (impactSound);
 			if (target.hitPoints <= damage)
-			{
-				Destroy (other.gameObject);
-				Destroy (this.gameObject);
+            {
+                Vector3 pos = other.transform.position;
+                Destroy(other.gameObject);
+                Instantiate(explosion, pos + new Vector3(0, .5f, 0), new Quaternion(0, 0, 0, 0));
+                Destroy (this.gameObject);
+
+
 			} 
 			else 
 			{

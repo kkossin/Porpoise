@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\fishBullet.cs" />
     <Compile Include="Assets\Scripts\gunTracker.cs" />
     <Compile Include="Assets\Scripts\recycleManager.cs" />
+    <Compile Include="Assets\Scripts\trashDestroyer.cs" />
     <Compile Include="Assets\Scripts\tutorialButtonScript.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
@@ -407,8 +408,6 @@
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_SDKManager.cs" />
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_SharedMethods.cs" />
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_Simulator.cs" />
-    <Compile Include="Assets\scrip.cs" />
-    <Compile Include="Assets\trashDestroyer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Explosion System\Shader\Exposion.shader" />

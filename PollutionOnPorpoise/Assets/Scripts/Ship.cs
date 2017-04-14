@@ -53,7 +53,7 @@ public class Ship : MonoBehaviour {
             //Debug.Log("speedScale: " + speedScale);
             //Debug.Log("angle cos: " + Math.Cos(angle));
             //Debug.Log("angle sin: " + Math.Sin(angle));
-            transform.position = new Vector3((float)(cx + Math.Sin(angle) * radius), 1.5f, (float)(cy + Math.Cos(angle) * radius));
+            transform.position = new Vector3((float)(cx + Math.Sin(angle) * radius), 1.0f, (float)(cy + Math.Cos(angle) * radius));
             //this._x = cx + Math.Sin(angle) * radius;
             //this._y = cy + Math.Cos(angle) * radius;
 
@@ -65,10 +65,12 @@ public class Ship : MonoBehaviour {
 
         if (hitPoints < 30)
         {
-            transform.GetComponent<Renderer>().material.color = Color.red;
-            yield return new WaitForSeconds(0.2f);
-            transform.GetComponent<Renderer>().material.color = originalColor;
+            //transform.GetComponent<Renderer>().material.color = Color.red;
+            //yield return new WaitForSeconds(0.2f);
+            //transform.GetComponent<Renderer>().material.color = originalColor;
         }
+
+        
     }
 
     public void shoot ()
