@@ -3,30 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class tutorialButtonScript : MonoBehaviour {
-	private Transform howToText;
-	private Transform controlsText;
-	public bool showControls;
+	private Transform buttonText;
+	private Transform hiddenText;
+	public bool showHidden;
 
 	// Use this for initialization
 	void Start () {
-		howToText = this.transform.Find ("tutorialText");
-		howToText.gameObject.SetActive (true);
-		controlsText = transform.Find ("actualControls");
-		controlsText.gameObject.SetActive (false);
-		showControls = false;
+		buttonText = this.transform.Find ("buttonText");
+		buttonText.gameObject.SetActive (true);
+		hiddenText = transform.Find ("hiddenText");
+		hiddenText.gameObject.SetActive (false);
+		showHidden = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (showControls) 
+		if (showHidden) 
 		{
-			changeText ();
+			changeText();
 		}
 	}
+
 	void changeText()
 	{
-		howToText.gameObject.SetActive (false);
-		controlsText.gameObject.SetActive (true);
+		buttonText.gameObject.SetActive (false);
+		hiddenText.gameObject.SetActive (true);
 	}
 
 }

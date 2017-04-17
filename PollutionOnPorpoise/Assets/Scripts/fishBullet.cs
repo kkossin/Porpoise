@@ -36,8 +36,6 @@ public class fishBullet : MonoBehaviour {
                 Destroy(other.gameObject);
                 Instantiate(explosion, pos + new Vector3(0, .5f, 0), new Quaternion(0, 0, 0, 0));
                 Destroy (this.gameObject);
-
-
 			} 
 			else 
 			{
@@ -52,7 +50,7 @@ public class fishBullet : MonoBehaviour {
 		else if (other.CompareTag ("Tutorial"))
 		{
 			tutorialButtonScript tbs = other.gameObject.GetComponent<tutorialButtonScript> ();
-			tbs.showControls = true;
+			tbs.showHidden = true;
 		}
 		else if (other.CompareTag ("start"))
 		{

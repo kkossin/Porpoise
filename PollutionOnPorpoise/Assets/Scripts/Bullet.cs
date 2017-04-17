@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour {
         else if (other.CompareTag("Tutorial"))
         {
             tutorialButtonScript tbs = other.gameObject.GetComponent<tutorialButtonScript>();
-            tbs.showControls = true;
+            tbs.showHidden = true;
         }
         else if (other.CompareTag("start"))
         {

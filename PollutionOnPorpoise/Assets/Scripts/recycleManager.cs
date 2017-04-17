@@ -14,7 +14,7 @@ public class recycleManager : MonoBehaviour {
 
     private DateTime startTime;
     private DateTime endTime;
-  //  private System.Random numGen;
+    //private System.Random numGen;
 
     int points = 0;
     public Rigidbody Trash1;
@@ -29,28 +29,28 @@ public class recycleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         
-        Debug.Log("Running Timer for: "+(timeToWin * 1000));
+        //Debug.Log("Running Timer for: "+(timeToWin * 1000));
         gameTimer = new Timer(timeToWin*1000);
         gameTimer.Elapsed += TimerTick;
         trash = new List<GameObject>();
-       // numGen = new System.Random((int)Time.time);
+        //numGen = new System.Random((int)Time.time);
         spawnTrash();
         gameTimer.Start();
         startTime = DateTime.Now;      
-        UnityEngine.Random.InitState( (int)System.DateTime.Now.Ticks);
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
     }
 
     void spawnTrash()
     {
         trashCount = UnityEngine.Random.Range(trashMin, trashMax);
         //total = trashCount;
-      //  Debug.Log("Trash: " + trashCount);
+        //Debug.Log("Trash: " + trashCount);
         for (int i=0; i < trashCount;i++)
         {
             Rigidbody clone;
             
             float offset = 0.0f;
-          //  Debug.Log(UnityEngine.Random.Range(0, 2));
+            //Debug.Log(UnityEngine.Random.Range(0, 2));
 
             Vector3 pos = new Vector3(0, 1.5f + offset, -1);
             Quaternion rot = UnityEngine.Random.rotationUniform;
@@ -74,12 +74,10 @@ public class recycleManager : MonoBehaviour {
         }
     }
     public void OnTriggerEnter(Collider other)
-    {        
-           
-            trash.Remove(other.gameObject);
-            Destroy(other.gameObject);
-        points++;
-        
+    {               
+        trash.Remove(other.gameObject);
+        Destroy(other.gameObject);
+        points++; 
     }
 
     // Update is called once per frame
@@ -95,7 +93,6 @@ public class recycleManager : MonoBehaviour {
         {
             gameOver();
         }
-   
 	}
 
     void TimerTick(object sender, EventArgs e)
@@ -104,6 +101,7 @@ public class recycleManager : MonoBehaviour {
         gameTimer.Stop();
         isGameOver = true;
     }
+
     void gameOver()
     {
         foreach(GameObject current in trash)
@@ -114,7 +112,7 @@ public class recycleManager : MonoBehaviour {
         Destroy(this.gameObject);
 
        
-         SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game");
     }
 
 }

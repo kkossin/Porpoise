@@ -78,6 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Explosion System\Demo\Script (for Demo)\ExplosionControl.cs" />
+    <Compile Include="Assets\Explosion System\Scripts\GraphicExplosion.cs" />
+    <Compile Include="Assets\Explosion System\Scripts\PhysicalExplosion.cs" />
+    <Compile Include="Assets\Explosion System\Scripts\light_control.cs" />
+    <Compile Include="Assets\LowPolyWater\Demo\Scripts\DemoFreeFlyCamera.cs" />
+    <Compile Include="Assets\LowPolyWater\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\ControllerEventListener.cs" />
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
@@ -86,10 +92,13 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Ship.cs" />
     <Compile Include="Assets\Scripts\Sludge.cs" />
+    <Compile Include="Assets\Scripts\StartScript.cs" />
     <Compile Include="Assets\Scripts\ViveControllerInputTest.cs" />
     <Compile Include="Assets\Scripts\fishBullet.cs" />
     <Compile Include="Assets\Scripts\gunTracker.cs" />
     <Compile Include="Assets\Scripts\recycleManager.cs" />
+    <Compile Include="Assets\Scripts\trashDestroyer.cs" />
+    <Compile Include="Assets\Scripts\tutorialButtonScript.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -401,10 +410,10 @@
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_SDKManager.cs" />
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_SharedMethods.cs" />
     <Compile Include="Assets\VRTK\Scripts\Utilities\VRTK_Simulator.cs" />
-    <Compile Include="Assets\scrip.cs" />
-    <Compile Include="Assets\trashDestroyer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Explosion System\Shader\Exposion.shader" />
+    <None Include="Assets\LowPolyWater\Shaders\LowPolyWater.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />

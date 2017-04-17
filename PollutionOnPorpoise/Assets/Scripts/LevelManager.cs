@@ -13,12 +13,15 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> boats;//TODO: Use this list in the inspector to populate boats!
     //TODO: Add a list of levels setups to move through once one is complete
     public GameObject water;
+    private GameObject title;
     public float filthSpeed;
     float currentClean;
     public float clean;
     public GameObject startButt;
     public GameObject exitButt;
     public GameObject tutorialButt;
+    public GameObject aboutButt;
+    public GameObject creditsButt;
     public GameObject boat1;
     public GameObject boat2;
     public GameObject boat3;
@@ -56,8 +59,11 @@ public class LevelManager : MonoBehaviour
         startButt.SetActive(true);
         exitButt.SetActive(true);
         tutorialButt.SetActive(true);
+        aboutButt.SetActive(true);
+        creditsButt.SetActive(true);
         ss = startButt.GetComponent<StartScript>();
         needsToWake = true;
+        title = GameObject.Find("Title");
     }
 
     void Awake()
@@ -69,12 +75,14 @@ public class LevelManager : MonoBehaviour
         startButt.SetActive(false);
         exitButt.SetActive(false);
         tutorialButt.SetActive(false);
+        aboutButt.SetActive(false);
+        creditsButt.SetActive(false);
         waterR = water.transform.GetComponent<Renderer>().material.color.r;
         waterG = water.transform.GetComponent<Renderer>().material.color.g;
         waterB = water.transform.GetComponent<Renderer>().material.color.b;
 
         currentClean = clean;
-        Debug.Log("START");
+        //Debug.Log("START");
         boats = new List<GameObject>();
         boats.Add(boat1);
         boats.Add(boat2);
@@ -91,8 +99,6 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
-
         if (ss.started) {
             pufferTimer += Time.deltaTime;
 
@@ -102,12 +108,13 @@ public class LevelManager : MonoBehaviour
                 spawnPuffer();
             }
 
-
             if (needsToWake)
             {
                 Awake();
                 needsToWake = false;
             }
+
+            title.SetActive(false);
         
             int i = 0;
             int j = -1;
@@ -158,17 +165,20 @@ public class LevelManager : MonoBehaviour
                     boats[currentBoatIndex].GetComponent("Ship").SendMessage("toggleMoving");
 
                     currentBoatIndex++;
-
                 }
             }
 
             if (boatsInLevel == 0) {
                 youWin();
             }
+
+        else
+            {
+                title.SetActive(true);
+            }
         }
-
-
     }
+
     void updateFilth()
     {
         if (boatsInLevel > 0)
@@ -184,21 +194,20 @@ public class LevelManager : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f));
             Instantiate(pufferFish, pos, new Quaternion(0, 0, 0, 0));
         }
-
     }
     
     private void displayTime(string time)
     {
-
         foreach (GameObject current in timerDisplays)
         {
             current.BroadcastMessage("UpdateText", time);
         }
     }
+
     void youWin()
     {
         boatsInLevel = -1;
-        Debug.Log("Winna!");
+        //Debug.Log("Winna!");
         Instantiate(minigameObject);
     }
 
@@ -206,5 +215,4 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
-   
 }
