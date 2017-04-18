@@ -82,6 +82,8 @@
     <Compile Include="Assets\Explosion System\Scripts\GraphicExplosion.cs" />
     <Compile Include="Assets\Explosion System\Scripts\PhysicalExplosion.cs" />
     <Compile Include="Assets\Explosion System\Scripts\light_control.cs" />
+    <Compile Include="Assets\LowPolyWater\Demo\Scripts\DemoFreeFlyCamera.cs" />
+    <Compile Include="Assets\LowPolyWater\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\ControllerEventListener.cs" />
     <Compile Include="Assets\Scripts\ControllerGrabObject.cs" />
@@ -411,6 +413,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Explosion System\Shader\Exposion.shader" />
+    <None Include="Assets\LowPolyWater\Shaders\LowPolyWater.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />

@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> boats;//TODO: Use this list in the inspector to populate boats!
     //TODO: Add a list of levels setups to move through once one is complete
     public GameObject water;
+    public GameObject waves;
     private GameObject title;
     public float filthSpeed;
     float currentClean;
@@ -28,7 +29,7 @@ public class LevelManager : MonoBehaviour
     public GameObject boat4;
 
     public GameObject pufferFish;
-    public int maxPuffer;
+    
     int pufferCount = 0;
 
     public int boatsInLevel;
@@ -41,17 +42,18 @@ public class LevelManager : MonoBehaviour
     private int currentBoatIndex = 0;
     public GameObject minigameObject;
     private bool needsToWake;
+    private Material newWavesMat;
 
-    float waterR;
-    float waterG;
-    float waterB;
+    float waterR, waterG, waterB, waterR2, waterG2, waterB2;
 
     StartScript ss;
 
+    public int maxPuffer;
     public float pufferSpawnDelay;//time in seconds for a new puffer to spawn default 5?
     float pufferTimer = 0f;
 
     public int initialPuffers;//default 2?
+    private Material originalWaves;
 
     // Use this for initialization
     void Start()
@@ -64,11 +66,18 @@ public class LevelManager : MonoBehaviour
         ss = startButt.GetComponent<StartScript>();
         needsToWake = true;
         title = GameObject.Find("Title");
+        //Material newWavesMat = Instantiate(waves.GetComponent<LowPolyWater>().material);
+        originalWaves = waves.GetComponent<LowPolyWater>().material;
+        newWavesMat = waves.GetComponent<LowPolyWater>().material;
+        //newWavesMat = new Material(waves.GetComponent<LowPolyWater>().material);
+        //newWavesMat.CopyPropertiesFromMaterial(waves.GetComponent<LowPolyWater>().material);
+        waves.GetComponent<LowPolyWater>().material = newWavesMat;
     }
 
     void Awake()
     {
         if (ss==null||!ss.started) { return; }
+        this.GetComponent<AudioSource>().Play();
 
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
 
@@ -77,9 +86,13 @@ public class LevelManager : MonoBehaviour
         tutorialButt.SetActive(false);
         aboutButt.SetActive(false);
         creditsButt.SetActive(false);
+        title.SetActive(false);
         waterR = water.transform.GetComponent<Renderer>().material.color.r;
         waterG = water.transform.GetComponent<Renderer>().material.color.g;
         waterB = water.transform.GetComponent<Renderer>().material.color.b;
+        waterR2 = newWavesMat.color.r;
+        waterB2 = newWavesMat.color.b;
+        waterG2 = newWavesMat.color.g;
 
         currentClean = clean;
         //Debug.Log("START");
@@ -113,8 +126,6 @@ public class LevelManager : MonoBehaviour
                 Awake();
                 needsToWake = false;
             }
-
-            title.SetActive(false);
         
             int i = 0;
             int j = -1;
@@ -123,8 +134,14 @@ public class LevelManager : MonoBehaviour
             float normalizedR = waterR * normalizedFilth;
             float normalizedG = waterG * normalizedFilth;
             float normalizedB = waterB * normalizedFilth;
-
+            float normalizedR2 = waterR2 * normalizedFilth;
+            float normalizedG2 = waterG2 * normalizedFilth;
+            float normalizedB2 = waterB2 * normalizedFilth;
+            
             water.transform.GetComponent<Renderer>().material.color = new Color(waterR - normalizedR, waterG - normalizedG, waterB - normalizedB);
+            newWavesMat.color = new Color(waterR2 - normalizedR, waterG2 - normalizedG, waterB2 - normalizedB);
+            waves.GetComponent<LowPolyWater>().material = newWavesMat;
+
             //Debug.Log(normalizedFilth);
             //if (water.transform.GetComponent<Renderer>().material.color.r <= 0 && water.transform.GetComponent<Renderer>().material.color.g <= 0 && water.transform.GetComponent<Renderer>().material.color.b <= 0)
             if (normalizedFilth >= 1.0f) {
@@ -171,11 +188,6 @@ public class LevelManager : MonoBehaviour
             if (boatsInLevel == 0) {
                 youWin();
             }
-
-        else
-            {
-                title.SetActive(true);
-            }
         }
     }
 
@@ -191,8 +203,9 @@ public class LevelManager : MonoBehaviour
     {
         if(pufferCount<maxPuffer)
         {
-            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f));
+            Vector3 pos = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-2f, 0f));
             Instantiate(pufferFish, pos, new Quaternion(0, 0, 0, 0));
+            pufferCount++;
         }
     }
     
@@ -208,11 +221,13 @@ public class LevelManager : MonoBehaviour
     {
         boatsInLevel = -1;
         //Debug.Log("Winna!");
+        displayTime("You Win!");
         Instantiate(minigameObject);
     }
 
     void gameOver()
     {
         SceneManager.LoadScene("Game");
+        waves.GetComponent<LowPolyWater>().material = originalWaves;
     }
 }
