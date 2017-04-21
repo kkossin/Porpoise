@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject leftController;
     public GameObject rightController;
+    public GameObject leftMenu;
+    public GameObject rightMenu;
 
     public GameObject leftControllerModel;
     public GameObject rightControllerModel;
@@ -29,6 +31,13 @@ public class PlayerController : MonoBehaviour
     private GameObject activeLeftShield;
     private GameObject activeRightShield;
 
+    bool leftGunOn = false;
+    bool rightGunOn = false;
+    public GameObject leftGun;
+    public GameObject rightGun;
+    private GameObject activeLeftGun;
+    private GameObject activeRightGun;
+
     public enum GunType
     {
         hand = 0,
@@ -39,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
     public GunType leftGunType;
     public GunType rightGunType;
+
+
+    public float gunOffset = .08f;
+    public float defaultOffset = .02f;
+
 
     // Use this for initialization
     void Start()
@@ -57,6 +71,7 @@ public class PlayerController : MonoBehaviour
         }
         updateGunState(Time.deltaTime);
         updateShieldState();
+        updateGunModelState();
     }
 
     public void updateGunState(float deltaTime)
@@ -210,6 +225,50 @@ public class PlayerController : MonoBehaviour
         clone.velocity = new Vector3(forward.x * speed,forward.y * speed, forward.z * speed);
         
         //clone.velocity = new Vector3(-.5f* speed, 0f* speed, .9f * speed);
+    }
+
+    void updateGunModelState()
+    {
+        if ((leftGunType == GunType.semiAuto || leftGunType == GunType.auto) && !leftGunOn)
+        {
+            //Vector3 positionLeft = new Vector3(leftControllerModel.transform.position.x, leftControllerModel.transform.position.y - leftControllerModel.transform.up.y, leftControllerModel.transform.position.z);
+            Vector3 positionLeft = leftControllerModel.transform.position;
+            Quaternion rotationLeft = leftControllerModel.transform.rotation;
+            activeLeftGun = Instantiate(leftGun, positionLeft, rotationLeft, leftControllerModel.transform);
+            activeLeftGun.transform.Rotate(0, 0, 0);
+            activeLeftGun.transform.Rotate(0, 0, 0);
+            leftGunOn = true;
+            //Vector3 temp = new Vector3(leftMenu.transform.position.x,gunOffset, leftMenu.transform.position.z);
+            Vector3 temp = new Vector3(leftMenu.transform.localPosition.x, gunOffset, leftMenu.transform.localPosition.z);
+            leftMenu.transform.localPosition = temp;
+
+        }
+        else if ((rightGunType == GunType.semiAuto || rightGunType == GunType.auto) && !rightGunOn)
+        {
+            Vector3 positionRight = rightControllerModel.transform.position;
+            Quaternion rotationRight = rightControllerModel.transform.rotation;
+            activeRightGun = Instantiate(rightGun, positionRight, rotationRight, rightControllerModel.transform);
+            activeRightGun.transform.Rotate(0, 0, 0);
+            activeRightGun.transform.Rotate(0, 0, 0);
+            rightGunOn = true;
+            Vector3 temp = new Vector3(rightMenu.transform.localPosition.x, gunOffset, rightMenu.transform.localPosition.z);
+            rightMenu.transform.localPosition = temp;
+
+        }
+        else if (leftGunType != GunType.semiAuto && leftGunType != GunType.auto && leftGunOn)
+        {
+            Destroy(activeLeftGun);
+            leftGunOn = false;
+            Vector3 temp = new Vector3(leftMenu.transform.localPosition.x, defaultOffset, leftMenu.transform.localPosition.z);
+            leftMenu.transform.localPosition = temp;
+        }
+        else if (rightGunType != GunType.semiAuto && rightGunType != GunType.auto && rightGunOn)
+        {
+            Destroy(activeRightGun);
+            rightGunOn = false;
+            Vector3 temp = new Vector3(rightMenu.transform.localPosition.x, defaultOffset, rightMenu.transform.localPosition.z);
+            rightMenu.transform.localPosition = temp;
+        }
     }
 
     void updateShieldState()

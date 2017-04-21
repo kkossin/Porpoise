@@ -209,6 +209,11 @@ public class LevelManager : MonoBehaviour
         }
     }
     
+    public void removePuffer()
+    {
+        pufferCount--;
+    }
+
     private void displayTime(string time)
     {
         foreach (GameObject current in timerDisplays)
@@ -225,6 +230,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(minigameObject);
     }
 
+  
     void gameOver()
     {
         SceneManager.LoadScene("Game");

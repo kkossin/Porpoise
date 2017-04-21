@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour {
     float speed = 1.0f;
 
     public GameObject explosion;
+    public GameObject level;
 
 
     public AudioClip impactSound;
@@ -65,8 +66,14 @@ public class Bullet : MonoBehaviour {
             StartScript ss = other.gameObject.GetComponent<StartScript>();
             ss.started = true;
         }
+        else if (other.CompareTag("boundry"))
+        {
+            other.gameObject.GetComponentInParent<LevelManager>().SendMessage("removePuffer");
+            Destroy(this.gameObject);
+        }
     }   
    
+  
     void Update () {
         isColliding = false;
         

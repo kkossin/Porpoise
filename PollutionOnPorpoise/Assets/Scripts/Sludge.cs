@@ -38,10 +38,12 @@ public class Sludge : MonoBehaviour {
             return;
         }
 
-        if(GetComponent<LevelManager>().boatsInLevel<0)
+        /*
+        if(GetComponent<LevelManager>().boatsInLevel < 0)
         {
             Destroy(this);//remove all sludge after winning
         }
+        */
     }
 
     public void OnTriggerEnter(Collider other)
