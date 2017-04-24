@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
         aboutButt.SetActive(true);
         creditsButt.SetActive(true);
         ss = startButt.GetComponent<StartScript>();
+        ss.started = true;
         needsToWake = true;
         title = GameObject.Find("Title");
         //Material newWavesMat = Instantiate(waves.GetComponent<LowPolyWater>().material);

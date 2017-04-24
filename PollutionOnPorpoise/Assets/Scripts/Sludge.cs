@@ -18,6 +18,7 @@ public class Sludge : MonoBehaviour {
 
     void Start () {
 		transform.rotation = Quaternion.LookRotation(direction);
+        transform.Rotate(90, 0, 0);
 	}
 	
 	// Update is called once per frame
