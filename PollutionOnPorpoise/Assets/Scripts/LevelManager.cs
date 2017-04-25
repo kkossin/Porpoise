@@ -18,25 +18,14 @@ public class LevelManager : MonoBehaviour
     public float filthSpeed;
     float currentClean;
     public float clean;
-    public GameObject startButt;
-    public GameObject exitButt;
-    public GameObject tutorialButt;
-    public GameObject aboutButt;
-    public GameObject creditsButt;
-    public GameObject boat1;
-    public GameObject boat2;
-    public GameObject boat3;
-    public GameObject boat4;
-
+    public GameObject startButt, exitButt, tutorialButt, aboutButt, creditsButt;
+    public GameObject boat1, boat2, boat3, boat4, boat5, boat6;
     public GameObject pufferFish;
     
     int pufferCount = 0;
 
     public int boatsInLevel;
-    public float timeToWave1;
-    public float timeToWave2;
-    public float timeToWave3;
-    public float timeToWave4;
+    public float timeToWave1, timeToWave2, timeToWave3, timeToWave4, timeToWave5, timeToWave6;
     public int numWaves;
     private List<float> timeToWave;
     private int currentBoatIndex = 0;
@@ -102,9 +91,11 @@ public class LevelManager : MonoBehaviour
         boats.Add(boat2);
         boats.Add(boat3);
         boats.Add(boat4);
-        timeToWave = new List<float>() { timeToWave4, timeToWave3, timeToWave2, timeToWave1 };
+        boats.Add(boat5);
+        boats.Add(boat6);
+        timeToWave = new List<float>() { timeToWave6, timeToWave5, timeToWave4, timeToWave3, timeToWave2, timeToWave1 };
 
-   for(int i=0;i<initialPuffers;i++)
+    for(int i=0;i<initialPuffers;i++)
         {
             spawnPuffer();
         }
