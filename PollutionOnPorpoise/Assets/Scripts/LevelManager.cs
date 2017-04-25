@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     //TODO: Add a list of levels setups to move through once one is complete
     public GameObject water;
     public GameObject waves;
-    private GameObject title;
+    private GameObject title, poster; //sprites used in menu
     public float filthSpeed;
     float currentClean;
     public float clean;
@@ -53,9 +53,10 @@ public class LevelManager : MonoBehaviour
         aboutButt.SetActive(true);
         creditsButt.SetActive(true);
         ss = startButt.GetComponent<StartScript>();
-        ss.started = true;
+        ss.started = false;
         needsToWake = true;
         title = GameObject.Find("Title");
+        poster = GameObject.Find("Poster");
         //Material newWavesMat = Instantiate(waves.GetComponent<LowPolyWater>().material);
         originalWaves = waves.GetComponent<LowPolyWater>().material;
         newWavesMat = waves.GetComponent<LowPolyWater>().material;
@@ -77,6 +78,7 @@ public class LevelManager : MonoBehaviour
         aboutButt.SetActive(false);
         creditsButt.SetActive(false);
         title.SetActive(false);
+        poster.SetActive(false);
         waterR = water.transform.GetComponent<Renderer>().material.color.r;
         waterG = water.transform.GetComponent<Renderer>().material.color.g;
         waterB = water.transform.GetComponent<Renderer>().material.color.b;
